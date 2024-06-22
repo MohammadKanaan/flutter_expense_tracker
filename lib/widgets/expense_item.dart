@@ -1,4 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/presentation/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseItem extends StatelessWidget {
@@ -12,7 +13,7 @@ class ExpenseItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(
           children: [
-            const Icon(Icons.food_bank, size: 50, color: Colors.blueGrey),
+            const Icon(CustomIcons.hamburger, size: 50, color: Colors.blueGrey),
             Text('${expense.title}'),
             const Spacer(),
             Text(

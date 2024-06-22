@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/MyFlutterApp.ttf
 ///
-/// 
+///
 /// * Entypo, Copyright (C) 2012 by Daniel Bruce
 ///         Author:    Daniel Bruce
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -27,16 +27,22 @@
 ///
 import 'package:flutter/widgets.dart';
 
-class MyFlutterApp {
-  MyFlutterApp._();
+class CustomIcons {
+  CustomIcons._();
 
   static const _kFontFam = 'MyFlutterApp';
   static const String? _kFontPkg = null;
 
-  static const IconData calendar = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData flight = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData question = IconData(0xf128, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData umbrella_beach = IconData(0xf5ca, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData business_time = IconData(0xf64a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hamburger = IconData(0xf805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData calendar =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData flight =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData question =
+      IconData(0xf128, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData umbrella_beach =
+      IconData(0xf5ca, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData business_time =
+      IconData(0xf64a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData hamburger =
+      IconData(0xf805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
