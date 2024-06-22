@@ -27,7 +27,9 @@ class ExpenseNotifier extends StateNotifier<List<Expense>> {
   ExpenseNotifier() : super(_registeredExpenses);
 
   void addExpense(
-      String title, double amount, DateTime date, Category category) {
+      {required String title,
+      required double amount,
+      required Category category}) {
     Expense entry = Expense(
       title: title,
       amount: amount,

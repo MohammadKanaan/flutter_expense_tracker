@@ -26,15 +26,6 @@ class ExpensesList extends HookConsumerWidget {
             },
           ),
         ),
-        Positioned(
-          bottom: 10,
-          right: 10,
-          // scroll to top button
-          child: FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.add),
-          ),
-        )
       ]),
     );
   }
