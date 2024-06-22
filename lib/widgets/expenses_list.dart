@@ -1,5 +1,6 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/provider.dart';
+import 'package:expense_tracker/widgets/expense_item.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,10 +22,7 @@ class ExpensesList extends HookConsumerWidget {
             scrollDirection: Axis.vertical,
             itemCount: registeredExpenses.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text('Item: $index'),
-                subtitle: Text('Amount: ${registeredExpenses[index].amount}'),
-              );
+              return ExpenseItem(expense: registeredExpenses[index]);
             },
           ),
         ),
