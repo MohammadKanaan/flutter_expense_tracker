@@ -43,7 +43,6 @@ class ExpenseItem extends StatelessWidget {
     final int month = expense.date.month;
     final int year = expense.date.year;
     return Card(
-      margin: const EdgeInsets.all(5),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Row(

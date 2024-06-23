@@ -1,23 +1,12 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/provider.dart';
 import 'package:expense_tracker/widgets/expense_item.dart';
-import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ExpensesList extends HookConsumerWidget {
   ExpensesList({super.key});
   final ScrollController scrollController = ScrollController();
-
-  void _openAddExpenseOverlay(BuildContext context) {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (ctx) {
-        return const NewExpense();
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,25 +38,22 @@ class ExpensesList extends HookConsumerWidget {
               itemBuilder: (context, index) {
                 return Dismissible(
                     key: ValueKey(registeredExpenses[index]),
+                    background: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        color: Colors.red.withOpacity(.70),
+                        child: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                      ),
+                    ),
                     onDismissed: (direction) => ref
                         .read(expenseProvider.notifier)
-                        .removeExpense(registeredExpenses[index]),
+                        .removeExpense(registeredExpenses[index], context),
                     child: ExpenseItem(expense: registeredExpenses[index]));
               },
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: FloatingActionButton(
-              onPressed: () {
-                _openAddExpenseOverlay(context);
-                scrollController.animateTo(
-                    scrollController.position.maxScrollExtent,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.fastOutSlowIn);
-              },
-              child: const Icon(Icons.add),
             ),
           ),
         ],

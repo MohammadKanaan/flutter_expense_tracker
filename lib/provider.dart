@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:expense_tracker/models/expense.dart';
 
@@ -40,8 +41,29 @@ class ExpenseNotifier extends StateNotifier<List<Expense>> {
     state = [...state, entry];
   }
 
-  void removeExpense(Expense expense) {
+  void removeExpense(Expense expense, BuildContext context) {
+    final indexOfExpense = state.indexOf(expense);
     state = state.where((element) => element != expense).toList();
+
+    // remove previous snackbar before showing a new one
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Expense removed'),
+        duration: const Duration(seconds: 2),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            // insert the todo back to the list at the same index
+            state = [
+              ...state.sublist(0, indexOfExpense),
+              expense,
+              ...state.sublist(indexOfExpense)
+            ];
+          },
+        ),
+      ),
+    );
   }
 }
 
