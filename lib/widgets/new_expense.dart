@@ -7,10 +7,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class NewExpense extends HookConsumerWidget {
   const NewExpense({super.key});
 
-  void _handleAddExpense(WidgetRef ref, String title, double amount,
-      Category category, DateTime date) {
-    ref.read(expenseProvider.notifier).addExpense(
-          title: title,
+  void _handleAddExpense(BuildContext context, WidgetRef ref, String title,
+      double amount, Category category, DateTime date) {
+    ref.watch(expenseProvider.notifier).addExpense(
+          title: title.trim(),
           amount: amount,
           category: category,
           date: date,
@@ -41,10 +41,11 @@ class NewExpense extends HookConsumerWidget {
     final int year = date.value.year;
 
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0),
       child: Column(
         children: [
           TextField(
+            autofocus: true,
             onChanged: (value) {
               title.value = value;
             },
@@ -88,8 +89,9 @@ class NewExpense extends HookConsumerWidget {
           ),
           const SizedBox(height: 10),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              const Text('Category: '),
+              const SizedBox(width: 10),
               DropdownButton(
                   items: Category.values
                       .map(
@@ -103,6 +105,7 @@ class NewExpense extends HookConsumerWidget {
                   onChanged: (value) {
                     category.value = value!;
                   }),
+              const Spacer(),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -112,7 +115,26 @@ class NewExpense extends HookConsumerWidget {
               const SizedBox(width: 5),
               ElevatedButton(
                 onPressed: () {
-                  _handleAddExpense(ref, title.value, amount.value,
+                  if (title.value.trim().isEmpty || amount.value <= 0.0) {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: const Text('Invalid Input'),
+                        content: const Text(
+                            'Please enter a valid title and amount.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(ctx);
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    );
+                    return;
+                  }
+                  _handleAddExpense(context, ref, title.value, amount.value,
                       category.value, date.value);
                   Navigator.pop(context);
                 },

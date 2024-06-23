@@ -39,6 +39,10 @@ class ExpenseNotifier extends StateNotifier<List<Expense>> {
     );
     state = [...state, entry];
   }
+
+  void removeExpense(Expense expense) {
+    state = state.where((element) => element != expense).toList();
+  }
 }
 
 final expenseProvider =
