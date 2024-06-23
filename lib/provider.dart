@@ -29,12 +29,13 @@ class ExpenseNotifier extends StateNotifier<List<Expense>> {
   void addExpense(
       {required String title,
       required double amount,
-      required Category category}) {
+      required Category category,
+      required DateTime date}) {
     Expense entry = Expense(
       title: title,
       amount: amount,
-      date: DateTime.now(),
-      category: Category.other,
+      date: date,
+      category: category,
     );
     state = [...state, entry];
   }
