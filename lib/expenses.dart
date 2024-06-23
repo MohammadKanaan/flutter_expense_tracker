@@ -1,5 +1,6 @@
 import 'package:expense_tracker/widgets/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
+import 'package:expense_tracker/widgets/pie_chart.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatelessWidget {
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [const Text('Chart'), ExpensesList()],
+      children: [const PieChartSample(), ExpensesList()],
     );
   }
 }
