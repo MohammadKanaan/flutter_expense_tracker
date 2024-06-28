@@ -1,5 +1,5 @@
 import 'package:expense_tracker/models/expense.dart';
-import 'package:expense_tracker/provider.dart';
+import 'package:expense_tracker/providers/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
